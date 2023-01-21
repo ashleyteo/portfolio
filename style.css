@@ -8,6 +8,13 @@ body {
 	padding: 0;
 }
 
+p {
+	font-family: medium-content-title-font, Georgia, Cambria, "Times New Roman", Times, serif;
+	font-size: 17px;
+	line-height: 24px;
+	text-justify: inter-word;
+}
+
 .container {
 	width: 100%;
 }
@@ -25,6 +32,8 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	text-decoration: none;
+	color: #000;
 }
 
 .header > .name > span {
@@ -90,10 +99,6 @@ body {
 	clear: both;
 }
 
-.panel > .content > p {
-	font-family: 'Times New Roman', Georgia;
-}
-
 .panel > .content > .source:after {
 	display: table;
 	content: "";
@@ -128,6 +133,108 @@ body {
 	line-height: 24px;
 	font-size: 18px;
 	font-variant: small-caps;
+}
+
+.article > .title {
+	width: 100%;
+	padding: 0 10px 5px;
+	border-bottom: 2px solid #000;
+}
+
+.article > .title > a {
+	display: none;
+}
+
+.article > .title > h2 {
+	text-transform: uppercase;
+	float: left;
+	font-weight: 400;
+	padding: 0;
+	margin: 0;
+	line-height: 24px;
+	font-size: 24px;
+}
+
+.article > .title > span {
+	display: none;
+}
+
+.article > .title > span:before {
+	display: inline-block;
+}
+
+.article > .title:after {
+	display: table;
+	content: "";
+	clear: both;
+}
+
+.article > .image {
+	width: 100%;
+	border-top: 1px solid #d5d5d5;
+	border-bottom: 1px solid #d5d5d5;
+}
+
+.article > .image > img {
+	max-width: 100%;
+}
+
+.article > .content {
+	padding: 0 10px;
+}
+
+.article > .content > p > code {
+	font-family: monospace;
+	border-radius: 3px;
+	padding: 3px;
+	background: #EEE;
+}
+
+.article > .content > pre {
+	background: #e5e5e5;
+	padding: 0 16px;
+	overflow-x: auto;
+}
+
+.article > .content > pre > code {
+	font-family: monospace;
+}
+
+figure {
+	margin: 0;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+	border: 1px solid #EEE;
+	width: 100%;
+}
+
+figure > img {
+	margin: 10px;
+	width: calc(100% - 20px);
+}
+
+figcaption {
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+	font-size: 11px;
+	background: #EEE;
+	padding: 5px 10px;
+}
+
+.figure-group:after {
+	display: table;
+	clear: both;
+	content: "";
+}
+
+.figure-group > figure {
+	float: left;
+}
+
+@media only screen and (min-width: 361px) {
+	.article > .title > span {
+		display: block;
+		float: right;
+	}
 }
 
 @media only screen and (min-width: 780px) {
@@ -236,6 +343,65 @@ body {
 	.panel > .content > .source > a:hover {
 		fill: #888;
 		color: #888;
+	}
+	
+	.article > .title {
+		padding: 0;
+		border-bottom: 2px solid #000;
+	}
+	
+	.article > .title > a {
+		display: block;
+		float: left;
+		text-decoration: none;
+		fill: #ccc;
+		color: #ccc;
+		width: 18px;
+		height: 18px;
+		margin-right: 6px;
+		margin-top: 3px;
+	}
+	
+	.article > .title > a:hover {
+		fill: #888;
+		color: #888;
+	}
+	
+	.article > .title > h2 {
+		display: block;
+		font-weight: 400;
+		text-transform: uppercase;
+		padding: 0;
+		padding-bottom: 10px;
+		line-height: 24px;
+		font-size: 24px;
+	}
+	
+	.article > .image {
+		border: none;
+	}
+	
+	.article > .content {
+		padding: 0;
+	}
+	
+	.article > .content > p {
+		font-size: 21px;
+		line-height: 32px;
+	}
+	
+	.article > .content > p > code {
+		border-radius: 5px;
+		padding: 5px;
+	}
+	
+	figure.half {
+		width: calc(50% - 5px);
+		margin-right: 10px;
+	}
+
+	figure.half:nth-child(2n) {
+		margin-right: 0px !important;
 	}
 }
 

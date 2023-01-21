@@ -1,0 +1,158 @@
+<html>
+	<head>
+		<meta name="robots" content="noindex">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Ashley Teo | Airbnb Review Rating Prediction</title>
+		
+		<link href="style.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="header">
+				<h1>Ashley Teo</h1>
+				<a class="name" href="index.html">
+					<span>A</span>
+					<span>S</span>
+					<span>H</span>
+					<span>L</span>
+					<span>E</span>
+					<span>Y</span>
+					<span>&nbsp;</span>
+					<span>T</span>
+					<span>E</span>
+					<span>O</span>
+				</a>
+				<div class="social">
+					<a href="https://www.linkedin.com/in/ashley-teoo/">
+						<svg role="img" viewBox="0 0 24 24" class="icon">
+							<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+						</svg>
+					</a>
+						
+					<a href="https://github.com/ashleyteo">
+						<svg role="img" viewBox="0 0 24 24" class="icon">
+							<path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+			
+			<div class="article">
+				<div class="title">
+					<a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg></a>
+					<h2>Airbnb Review Rating Prediction</h2>
+					<span class="r"></span>
+				</div>
+				
+				<div class="content">
+					<p>The goal of this project was to predict Airbnb’s review ratings in NYC to help prospective hosts uncover which factors contribute to a successful Airbnb property.</p>
+					<p>Firstly, I cleaned the data, decided what to do with the <code>NULL</code> values, and filtered variables that were relevant to the analysis.</p>
+					<pre>
+						<code>
+colSums(is.na(Airdf)) #how many NAs in a column
+sum(colSums(is.na(Airdf))) #193504 total inputs with NAs
+#Yet there are some blank("") inputs that are not captured by the is.na function
+
+NAcolumns <- names(which(colSums(is.na(Airdf)) > 0 )) #which columns have NAs
+print(NAcolumns)
+cat('There are', length(names(which(colSums(is.na(Airdf)) > 0 ))), 'columns with NAs. ')
+
+getRid <- c("id", "NAME", "host.id", "host.name", "country","country.code", "house_rules", "license")
+
+Airdf1 <- Airdf %>%
+      select(-getRid)
+						</code>
+					</pre>
+					<p>The dataset was then prepared by splitting it into 90% for training and 10% for testing. I ran supervised models such as K-nearest neighbors, Random Forest, Lasso, and Simple Linear in R.</p>
+					<pre>
+						<code>
+Lasso:
+# Split data into train and test 
+Airdf1 <- Airdf_dum
+split <- sample.split(Airdf1, SplitRatio = 0.8)
+train_data <- subset(Airdf1, split == "TRUE")
+test_data <- subset(Airdf1, split == "FALSE")
+
+
+# Define predictor and response variables
+y <- train_data$review.rate.number
+Mx <- as.matrix(train_data[,-8])
+
+# fit lasso regression model using k-fold cross-validation
+cv_model <- cv.glmnet(Mx, y, alpha = 1)
+best_lambda <- cv_model$lambda.min
+
+# display optimal lambda value
+best_lambda
+
+# view plot of test MSE's vs. lambda values
+plot(cv_model)
+						</code>
+					</pre>
+					<div class="figure-group">
+						<figure>
+							<img src="images/airbnb-1.png">
+							<figcaption>Identification of Optimum Lambda</figcaption>
+						</figure>
+					</div>
+					<p>I evaluated all the models by looking at their Mean Squared Errors and Out-of-Sample R&sup2;, and found that the Random Forest model gave the most accurate predictions.</p>
+					<div class="figure-group">
+						<figure>
+							<img src="images/airbnb-2.png">
+							<figcaption>Comparison of Model R&sup2;</figcaption>
+						</figure>
+					</div>
+					<p>Using the Random Forest model, I identified the importance of various factors.</p>
+					<pre>
+						<code>
+# Random Forest
+dv_RF <- which(names(Airdf1) %in% "review.rate.number")
+for(k in 1:nfold){
+trainrow <- which(foldid!=k)
+RF_train <- Airdf1[trainrow,]
+RF_test <- Airdf1[-trainrow,-dv_RF]
+
+RF_train_ans <- Airdf1[trainrow,dv_RF]
+RF_test_ans <- Airdf1[-trainrow,dv_RF]
+
+RFmodel <- ranger(review.rate.number~.,data = RF_train, num.trees = 500, respect.unordered.factors = "order")
+
+RF_predictions <- predict(RFmodel, RF_test)$predictions
+RF_test <- cbind(RF_test, RF_test_ans)
+
+OOSR2$randomForest[k] <- R2(y = RF_test_ans, pred = as.numeric(RF_predictions), family = "gaussian")
+OOSMSE$randomForest[k] <- mean((RF_test_ans - as.numeric(RF_predictions))^2)
+#Progress message
+print(paste("RandomForest: Iteration",k,"of",nfold,"(thank you for your patience)"))
+}
+
+# Insights from Random forest
+dv_RF <- which(names(Airdf1) %in% "review.rate.number")
+
+RF_all <- Airdf1[,] 
+RF_ans <- Airdf1[,dv_RF] #the true value for target
+
+RFmodel_all <- ranger(review.rate.number~.,data = RF_all, num.trees = 500, respect.unordered.factors = "order", importance='impurity') #Fitting all data into the model
+
+ranger::importance(RFmodel_all) #specify random forest
+vip(RFmodel_all) #graphing
+
+						</code>
+					</pre>
+					<div class="figure-group">
+						<figure>
+							<img src="images/airbnb-3.png">
+							<figcaption>Relative Importace of Factors for AirBnB Hosts</figcaption>
+						</figure>
+					</div>
+					<p>With this information, the recommendation would be for Airbnb hosts to focus on a good location in NYC, having optimal reviews per month (the more reviews the better), good availability for the next 365 days, and a good price listing in order to receive good reviews.</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
