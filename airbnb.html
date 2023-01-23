@@ -52,23 +52,7 @@
 				<div class="content">
 					<p>The goal of this project was to predict Airbnb’s review ratings in NYC to help prospective hosts uncover which factors contribute to a successful Airbnb property.</p>
 					<p>Firstly, I cleaned the data, decided what to do with the <code>NULL</code> values, and filtered variables that were relevant to the analysis.</p>
-					<pre>
-						<code>
-colSums(is.na(Airdf)) #how many NAs in a column
-sum(colSums(is.na(Airdf))) #193504 total inputs with NAs
-#Yet there are some blank("") inputs that are not captured by the is.na function
-
-NAcolumns <- names(which(colSums(is.na(Airdf)) > 0 )) #which columns have NAs
-print(NAcolumns)
-cat('There are', length(names(which(colSums(is.na(Airdf)) > 0 ))), 'columns with NAs. ')
-
-getRid <- c("id", "NAME", "host.id", "host.name", "country","country.code", "house_rules", "license")
-
-Airdf1 <- Airdf %>%
-      select(-getRid)
-						</code>
-					</pre>
-					<p>The dataset was then prepared by splitting it into 90% for training and 10% for testing. I ran supervised models such as K-nearest neighbors, Random Forest, Lasso, and Simple Linear in R.</p>
+					<p>The dataset was then prepared by splitting it into 90% for training and 10% for testing. I ran K-nearest neighbors, Random Forest, Lasso, and Simple Linear supervised models in R.</p>
 					<pre>
 						<code>
 Lasso:
