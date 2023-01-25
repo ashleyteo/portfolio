@@ -73,13 +73,19 @@ p {
 	margin: 10px 0;
 }
 
-.panel > .content > .title > h3 {
+.panel > .content > .title > h3, a {
 	float: left;
 	font-weight: 400;
 	padding: 0;
 	margin: 0;
 	line-height: 24px;
 	font-size: 24px;
+	text-decoration-style: dotted;
+	color: #000;
+}
+
+.panel > .content > .title > a:hover {
+	text-decoration-style: solid;
 }
 
 .panel > .content > .title > span {
