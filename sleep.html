@@ -58,13 +58,15 @@
 						</figure>
 					</div>
 					<p>From the correlation table, I decided to further analyze the two variables with a relatively high correlation and noticed that <code>Sedentary Minutes</code> and <code>Total Minutes Asleep</code> had a linear trend with a negative correlation.</p>
-					<p>Next, I checked for regression problems with a simple linear model and found irrelevant regressors, multicollinearity, and heteroscedasticity issues.</p>
 					<div class="figure-group">
-						<figure class="half">
+						<figure>
 							<img src="images/sleep.png">
 							<figcaption>Scatter Plot of Sedentary Minutes and Total Minutes Asleep</figcaption>
 						</figure>
-						<figure class="half">
+					</div>
+					<p>Next, I checked for regression problems with a simple linear model and found irrelevant regressors, multicollinearity, and heteroscedasticity issues.</p>
+					<div class="figure-group">
+						<figure>
 							<img src="images/sleep-2.png">
 							<figcaption>Evaluation of Heteroscedasticity</figcaption>
 						</figure>
@@ -90,8 +92,8 @@ summary(fixed.IdFE)
 							<figcaption>Panel Regression Scatterplot</figcaption>
 						</figure>
 					</div>
-					<p>Given the available data, the panel regression showed that sleeping time reduces by 0.333 minutes, on average per individual, when sedentary minutes increased by one minute. This means <b>SOMETHING IMPORANT?</b></p>
-					<p>Lastly, I tested for fixed effects and found that fixed effects is indeed better than OLS indicating that the fixed effects model (that accounts for time effects) is indeed a better model.</p>
+					<p>Given the available data, the panel regression showed that sleeping time reduces by 0.333 minutes, on average per individual, when sedentary minutes increased by one minute. This means ties in with the FitBit goal of increasing user activity - being less sedentary increase sleep quality.</p>
+					<p>Finally, I tested for fixed effects and found that fixed effects is indeed better than OLS indicating that the fixed effects model (that accounts for time effects) is indeed a better model.</p>
 				</div>
 			</div>
 		</div>
